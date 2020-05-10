@@ -1,4 +1,4 @@
-package ru.volsu.qa.ec;
+package ru.volsu.qa.ui.expectedconditions;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
