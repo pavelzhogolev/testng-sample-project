@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 public class TopBar {
 
     @FindBy( css = ".login" )
-    public WebElement signInButton;
+    private WebElement signInButton;
 
     public void signIn() {
         this.signInButton.click();
