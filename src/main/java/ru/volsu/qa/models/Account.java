@@ -1,47 +1,18 @@
 package ru.volsu.qa.models;
 
+import lombok.*;
+
+@Data
 public class Account {
 
-    String firstName;
+    private String firstName;
 
-    String lastName;
+    private String lastName;
 
-    String email;
+    private String email;
 
-    String password;
+    private String password;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-//TODO add all supported parameters to the Account model
+    //TODO add all supported parameters to the Account model
 
 }
