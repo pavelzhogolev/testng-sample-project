@@ -1,23 +1,23 @@
 package ru.volsu.qa.ui;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.volsu.qa.models.Account;
-import ru.volsu.qa.ui.expectedconditions.PageLoaded;
 import ru.volsu.qa.ui.pagefactory.TopBar;
 import ru.volsu.qa.ui.pageobject.SignUpForm;
-import ru.volsu.qa.ui.utils.EmailGenerator;
 
+@Slf4j
 public class RegistrationNegativeTests extends BaseTest {
+
+    @Autowired
+    SignUpForm signUpForm;
 
     @DataProvider(name = "accountNegativeDataProvider")
     public Object[][] accountNegativeDataProvider() {
@@ -28,22 +28,24 @@ public class RegistrationNegativeTests extends BaseTest {
         accountWithInvalidEmail.setEmail("john.doeyahoo.com");
 
         return new Object[][] {
-                {accountWithAlreadyUsedEmail, "An account using this email address has already been registered. Please enter a valid password or request a new one."},
+                {accountWithAlreadyUsedEmail, "An df account using this email address has already been registered. Please enter a valid password or request a new one."},
                 {accountWithInvalidEmail, "Invalid email address."}
         };
     }
 
     @Test(dataProvider = "accountNegativeDataProvider")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify user registration with incorrect email value.")
     public void registerAccountNegativeTest(Account account, String errorMessage ) {
         TopBar topBar = PageFactory.initElements(webdriver, TopBar.class);
         topBar.signIn();
 
-        SignUpForm signUpForm = new SignUpForm(webdriver);
         signUpForm.fillForm( account.getEmail() );
         signUpForm.clickCreateAccountButton();
 
         String errorOnPage = signUpForm.getErrorMessage();
 
+        log.info("Verify that correct error message is shown.");
         Assert.assertEquals(errorOnPage, errorMessage);
     }
 

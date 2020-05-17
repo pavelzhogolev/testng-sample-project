@@ -1,8 +1,9 @@
-package ru.volsu.qa;
+package ru.volsu.qa.api;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import ru.volsu.qa.models.Post;
 
@@ -18,6 +19,7 @@ public class ApiTests {
     }
 
     @Test
+    @Ignore
     public void testVerifyStatusCodeForGetPosts() {
         when()
                 .request("GET", "/posts")
@@ -26,6 +28,7 @@ public class ApiTests {
     }
 
     @Test
+    @Ignore
     public void testVerifyStatusCodeForGetPostsWithLogging() {
         given()
                 .log().all()
@@ -37,6 +40,7 @@ public class ApiTests {
     }
 
     @Test
+    @Ignore
     public void testVerifyStatusCodeForGetPostsWithConditionalLogging() {
         given()
                 .log().ifValidationFails()
@@ -48,6 +52,7 @@ public class ApiTests {
     }
 
     @Test
+    @Ignore
     public void testVerifyResponseTimeForGetPosts() {
         when()
                 .request("GET", "/posts")
@@ -56,6 +61,7 @@ public class ApiTests {
     }
 
     @Test
+    @Ignore
     public void testVerifyResponseStatusForCreatePost() {
         Post newPost = new Post(2, "Title", "Some text");
         given()
@@ -68,6 +74,7 @@ public class ApiTests {
     }
 
     @Test
+    @Ignore
     public void testVerifyResponseBodyForCreatePost() {
         Post newPost = new Post(2, "Title", "Some text");
         given()

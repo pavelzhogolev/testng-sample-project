@@ -1,4 +1,4 @@
-package ru.volsu.qa;
+package ru.volsu.qa.utils;
 
 public class Math {
 

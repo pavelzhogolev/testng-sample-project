@@ -1,8 +1,9 @@
-package ru.volsu.qa;
+package ru.volsu.qa.unit;
 
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
+import ru.volsu.qa.utils.Math;
 
 public class SimpleTests {
 
@@ -26,6 +27,7 @@ public class SimpleTests {
         System.out.println("Some actions after method");
     }
 
+    @Ignore
     @Test(groups = {"smoke", "regression"})
     public void simpleTest() {
         System.out.println("Running test...");
@@ -33,6 +35,7 @@ public class SimpleTests {
         Assert.assertEquals(Math.max(3, 5), 5);
     }
 
+    @Ignore
     @Test(groups={"regression"})
     public void testWithSoftAssert() {
         SoftAssert sa = new SoftAssert();
@@ -43,6 +46,7 @@ public class SimpleTests {
         sa.assertAll();
     }
 
+    @Ignore
     @Test
     @Parameters({"firstVal", "secondVal", "expectedVal"})
     public void testWithParams(int firstVal, int secondVal, int expectedVal){
@@ -57,6 +61,7 @@ public class SimpleTests {
         };
     }
 
+    @Ignore
     @Test(dataProvider = "simpleDataProvider", groups = {"regression"})
     public void testWithDataProvider(int firstVal, int secondVal, int expectedVal){
         Assert.assertEquals(Math.max(firstVal, secondVal), expectedVal);

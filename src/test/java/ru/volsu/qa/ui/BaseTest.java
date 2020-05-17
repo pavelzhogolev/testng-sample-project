@@ -1,29 +1,32 @@
 package ru.volsu.qa.ui;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.annotations.*;
+import ru.volsu.qa.config.AppConfig;
+import ru.volsu.qa.config.deprecated.Config;
+import ru.volsu.qa.config.deprecated.ConfigLoader;
+import ru.volsu.qa.listeners.FailuresListener;
 
-public class BaseTest {
+@Listeners({FailuresListener.class})
+@ContextConfiguration( classes = AppConfig.class )
+public class BaseTest extends AbstractTestNGSpringContextTests{
 
-    protected ChromeDriver webdriver;
+    @Autowired
+    protected WebDriver webdriver;
+
+    @Autowired
+    private AppConfig config;
 
     @BeforeMethod
-    public void initBrowser() {
-        String path = System.getProperty("user.dir");
-        System.setProperty("webdriver.chrome.driver", path + "/resources/chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
-        webdriver = new ChromeDriver(options);
-
-        webdriver.get("http://automationpractice.com/");
+    public void openBaseUrl() {
+        webdriver.get(config.getBaseUrl());
     }
 
-    @AfterMethod
-    public void closeBrowser(){
-        webdriver.quit();
-    }
+    @AfterSuite
+    public void closeBrowser(){}
 }
