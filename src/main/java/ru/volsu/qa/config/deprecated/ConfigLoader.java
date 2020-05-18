@@ -11,7 +11,7 @@ public class ConfigLoader {
 
     public static Config getConfig() {
         if(config == null) {
-            return loadProperties();
+            config = loadProperties();
         }
 
         return config;
