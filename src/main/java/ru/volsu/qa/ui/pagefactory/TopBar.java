@@ -1,11 +1,13 @@
 package ru.volsu.qa.ui.pagefactory;
 
-import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-@Slf4j
 public class TopBar {
+
+    private static final Logger log = LogManager.getLogger(TopBar.class);
 
     @FindBy( css = ".login" )
     private WebElement signInButton;

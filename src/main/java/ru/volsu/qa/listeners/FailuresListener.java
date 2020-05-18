@@ -1,8 +1,8 @@
 package ru.volsu.qa.listeners;
 
 import io.qameta.allure.Attachment;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -10,16 +10,14 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import ru.volsu.qa.utils.ApplicationContextHolder;
 
-import java.io.File;
-import java.io.IOException;
 
-@Slf4j
 public class FailuresListener implements ITestListener {
+
+    private static final Logger log = LogManager.getLogger(FailuresListener.class);
 
 
     @Override
     public void onTestFailure(ITestResult result) {
-
         this.captureScreenshot();
 //        try {
 //            FileUtils.copyFile(tempScreenshot, new File("c:\\tmp\\screenshot.png"));

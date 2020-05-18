@@ -3,7 +3,8 @@ package ru.volsu.qa.ui;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.support.PageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
@@ -13,8 +14,10 @@ import ru.volsu.qa.models.Account;
 import ru.volsu.qa.ui.pagefactory.TopBar;
 import ru.volsu.qa.ui.pageobject.SignUpForm;
 
-@Slf4j
+
 public class RegistrationNegativeTests extends BaseTest {
+
+    private static final Logger log = LogManager.getLogger(RegistrationNegativeTests.class);
 
     @Autowired
     SignUpForm signUpForm;

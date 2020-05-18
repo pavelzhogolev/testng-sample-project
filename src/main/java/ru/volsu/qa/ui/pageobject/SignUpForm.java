@@ -1,15 +1,14 @@
 package ru.volsu.qa.ui.pageobject;
 
-import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.springframework.stereotype.Component;
 
-@Slf4j
 @Component
 public class SignUpForm extends BasePage {
+
+    private static final Logger log = LogManager.getLogger(SignUpForm.class);
 
     private final By formContainer = By.id("create-account_form");
 
